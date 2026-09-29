@@ -1,0 +1,1284 @@
+/* ============================================================
+   SMART BUS - FLEET INTELLIGENCE
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+
+    font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            #0c2638 0%,
+            #071521 35%,
+            #050e1b 100%
+        );
+
+    color: #e5edf7;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+.fleet-topbar {
+
+    height: 54px;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 22px;
+
+    background: rgba(5, 15, 28, 0.97);
+
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+
+    position: relative;
+
+    z-index: 1000;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.brand-mark {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d8cf8,
+            #2563eb
+        );
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 5px 20px rgba(37, 99, 235, 0.35);
+}
+
+
+.brand-text h1 {
+
+    font-size: 15px;
+
+    letter-spacing: 1.5px;
+
+    color: white;
+}
+
+
+.brand-text p {
+
+    font-size: 9px;
+
+    color: #8ea3ba;
+
+    margin-top: 2px;
+}
+
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.live-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    color: #a8bdcf;
+
+    letter-spacing: 0.5px;
+}
+
+
+.live-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 10px rgba(34, 197, 94, 0.8);
+
+    animation:
+        livePulse 1.5s infinite;
+}
+
+
+@keyframes livePulse {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(34, 197, 94, 0.6);
+    }
+
+    70% {
+        box-shadow:
+            0 0 0 7px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+
+.back-button {
+
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    font-size: 11px;
+
+    padding: 7px 12px;
+
+    border-radius: 7px;
+
+    border: 1px solid rgba(148, 163, 184, 0.2);
+
+    background: rgba(15, 30, 46, 0.8);
+
+    transition: 0.2s ease;
+}
+
+
+.back-button:hover {
+
+    color: white;
+
+    border-color: #3b82f6;
+
+    background: rgba(37, 99, 235, 0.15);
+}
+
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+.fleet-page {
+
+    width: min(1290px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 24px 0 20px;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 30px;
+
+    margin-bottom: 24px;
+}
+
+
+.eyebrow {
+
+    color: #22a7ff;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+
+.page-header h2 {
+
+    font-size: 28px;
+
+    color: #f8fafc;
+
+    line-height: 1.1;
+
+    margin-bottom: 8px;
+}
+
+
+.page-header p {
+
+    color: #8fa7bd;
+
+    font-size: 12px;
+
+    max-width: 620px;
+
+    line-height: 1.6;
+}
+
+
+.last-update {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 120px;
+}
+
+
+.update-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 9px rgba(34, 197, 94, 0.8);
+}
+
+
+.update-label {
+
+    display: block;
+
+    font-size: 8px;
+
+    color: #6f8aa2;
+
+    letter-spacing: 0.8px;
+
+    margin-bottom: 3px;
+}
+
+
+.last-update strong {
+
+    display: block;
+
+    color: #e2e8f0;
+
+    font-size: 10px;
+}
+
+
+/* ============================================================
+   SUMMARY
+   ============================================================ */
+
+.fleet-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 13px;
+
+    margin-bottom: 17px;
+}
+
+
+.metric-card {
+
+    min-height: 72px;
+
+    padding: 14px 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(21, 38, 55, 0.95),
+            rgba(11, 24, 38, 0.95)
+        );
+
+    border: 1px solid rgba(148, 163, 184, 0.16);
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.metric-card:hover {
+
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(59, 130, 246, 0.4);
+}
+
+
+.metric-icon {
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+
+    font-weight: 900;
+}
+
+
+.metric-icon.blue {
+
+    background: rgba(14, 165, 233, 0.13);
+
+    color: #38bdf8;
+}
+
+
+.metric-icon.green {
+
+    background: rgba(34, 197, 94, 0.12);
+
+    color: #22c55e;
+}
+
+
+.metric-icon.orange {
+
+    background: rgba(245, 158, 11, 0.13);
+
+    color: #f59e0b;
+}
+
+
+.metric-icon.purple {
+
+    background: rgba(139, 92, 246, 0.15);
+
+    color: #a78bfa;
+
+    font-size: 13px;
+}
+
+
+.metric-card span {
+
+    display: block;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    color: #7e95aa;
+
+    letter-spacing: 0.7px;
+
+    margin-bottom: 4px;
+}
+
+
+.metric-card strong {
+
+    font-size: 21px;
+
+    color: #f1f5f9;
+}
+
+
+/* ============================================================
+   MAIN GRID
+   ============================================================ */
+
+.fleet-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        390px;
+
+    gap: 17px;
+
+    align-items: stretch;
+}
+
+
+/* ============================================================
+   PANELS
+   ============================================================ */
+
+.map-panel,
+.bus-panel {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(14, 31, 48, 0.98),
+            rgba(8, 21, 34, 0.98)
+        );
+
+    border: 1px solid rgba(148, 163, 184, 0.16);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    min-width: 0;
+}
+
+
+.panel-header {
+
+    min-height: 69px;
+
+    padding: 15px 17px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid rgba(148, 163, 184, 0.13);
+}
+
+
+.panel-kicker {
+
+    display: block;
+
+    color: #1da8ff;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 5px;
+}
+
+
+.panel-header h3 {
+
+    font-size: 15px;
+
+    color: #edf4fa;
+}
+
+
+.map-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #4ade80;
+
+    font-size: 9px;
+
+    font-weight: 900;
+}
+
+
+.map-status span {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 8px rgba(34, 197, 94, 0.8);
+}
+
+
+/* ============================================================
+   CRITICAL MAP FIX
+   ============================================================ */
+
+.map-wrapper {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    background: #dcecff;
+}
+
+
+#fleetMap {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 500px;
+
+    z-index: 1;
+}
+
+
+/*
+   Leaflet sometimes calculates the map size before
+   the browser has finished laying out the page.
+   This makes the map container explicit.
+*/
+
+#fleetMap .leaflet-container {
+
+    width: 100%;
+
+    height: 100%;
+
+    background: #dcecff;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+}
+
+
+/* ============================================================
+   MAP OVERLAY
+   ============================================================ */
+
+.map-overlay {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 12px;
+
+    z-index: 500;
+
+    padding: 7px 10px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(5, 15, 28, 0.86);
+
+    backdrop-filter:
+        blur(8px);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    color: #d8e7f4;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.7px;
+}
+
+
+.map-live-dot {
+
+    display: inline-block;
+
+    width: 6px;
+    height: 6px;
+
+    margin-right: 5px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 8px rgba(34, 197, 94, 0.8);
+}
+
+
+/* ============================================================
+   LEAFLET CUSTOMIZATION
+   ============================================================ */
+
+.leaflet-control-zoom {
+
+    border:
+        1px solid rgba(15, 23, 42, 0.25) !important;
+
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
+
+.leaflet-control-zoom a {
+
+    color: #0f172a !important;
+
+    background: rgba(255, 255, 255, 0.92) !important;
+}
+
+
+.leaflet-control-attribution {
+
+    font-size: 8px !important;
+
+    background:
+        rgba(255, 255, 255, 0.82) !important;
+}
+
+
+/* ============================================================
+   BUS MARKER
+   ============================================================ */
+
+.bus-marker {
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1677ff,
+            #0056d6
+        );
+
+    border: 3px solid white;
+
+    box-shadow:
+        0 3px 14px rgba(0, 70, 180, 0.5);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-size: 17px;
+
+    position: relative;
+
+    transition:
+        transform 0.15s ease;
+}
+
+
+.bus-marker::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -7px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(37, 99, 235, 0.35);
+
+    animation:
+        busPulse 2s infinite;
+}
+
+
+@keyframes busPulse {
+
+    0% {
+        transform: scale(0.85);
+
+        opacity: 0.7;
+    }
+
+    70% {
+        transform: scale(1.25);
+
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/* ============================================================
+   ROUTE
+   ============================================================ */
+
+.bus-route {
+
+    stroke: #1d8cf8;
+
+    stroke-width: 4;
+
+    opacity: 0.55;
+
+    dash-array: 10 8;
+
+    animation:
+        routeFlow 1.5s linear infinite;
+}
+
+
+@keyframes routeFlow {
+
+    to {
+        stroke-dashoffset: -18;
+    }
+}
+
+
+/* ============================================================
+   BUS LIST
+   ============================================================ */
+
+.bus-list {
+
+    height: 500px;
+
+    overflow-y: auto;
+
+    padding: 8px;
+}
+
+
+.bus-list::-webkit-scrollbar {
+
+    width: 5px;
+}
+
+
+.bus-list::-webkit-scrollbar-track {
+
+    background: transparent;
+}
+
+
+.bus-list::-webkit-scrollbar-thumb {
+
+    background: #24384b;
+
+    border-radius: 10px;
+}
+
+
+.bus-card {
+
+    padding: 14px;
+
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid rgba(148, 163, 184, 0.12);
+
+    background:
+        rgba(17, 34, 51, 0.72);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.bus-card:hover {
+
+    transform: translateX(3px);
+
+    border-color:
+        rgba(59, 130, 246, 0.4);
+
+    background:
+        rgba(22, 45, 67, 0.9);
+}
+
+
+.bus-card.selected {
+
+    border-color:
+        rgba(37, 140, 255, 0.8);
+
+    background:
+        rgba(24, 68, 106, 0.5);
+
+    box-shadow:
+        inset 3px 0 0 #168cff;
+}
+
+
+.bus-card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 9px;
+}
+
+
+.bus-id {
+
+    color: #f1f5f9;
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+
+.bus-status {
+
+    padding: 4px 7px;
+
+    border-radius: 20px;
+
+    font-size: 7px;
+
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+}
+
+
+.bus-status.active {
+
+    color: #4ade80;
+
+    background:
+        rgba(34, 197, 94, 0.12);
+}
+
+
+.bus-status.inactive {
+
+    color: #94a3b8;
+
+    background:
+        rgba(148, 163, 184, 0.1);
+}
+
+
+.bus-position-label {
+
+    display: block;
+
+    font-size: 8px;
+
+    color: #6f8ca5;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 3px;
+}
+
+
+.bus-position {
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 9px;
+
+    color: #72bdf5;
+}
+
+
+/* ============================================================
+   REFRESH
+   ============================================================ */
+
+.refresh-button {
+
+    border: 1px solid rgba(148, 163, 184, 0.18);
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color: #cbd5e1;
+
+    padding: 7px 10px;
+
+    border-radius: 7px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.refresh-button:hover {
+
+    border-color: #3b82f6;
+
+    color: white;
+
+    background:
+        rgba(37, 99, 235, 0.15);
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.loading-state {
+
+    padding: 35px 15px;
+
+    text-align: center;
+
+    color: #6f879d;
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   BUS DETAILS
+   ============================================================ */
+
+.bus-details {
+
+    margin-top: 17px;
+
+    padding: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15, 34, 52, 0.96),
+            rgba(8, 21, 34, 0.96)
+        );
+
+    border:
+        1px solid rgba(59, 130, 246, 0.28);
+
+    border-radius: 13px;
+}
+
+
+.bus-details.hidden {
+
+    display: none;
+}
+
+
+.details-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+
+.details-header h3 {
+
+    font-size: 17px;
+
+    color: white;
+}
+
+
+.close-button {
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid rgba(148, 163, 184, 0.2);
+
+    border-radius: 7px;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    color: #cbd5e1;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+.details-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.detail-item {
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    border:
+        1px solid rgba(148, 163, 184, 0.1);
+}
+
+
+.detail-item span {
+
+    display: block;
+
+    color: #6f879d;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.6px;
+
+    margin-bottom: 5px;
+}
+
+
+.detail-item strong {
+
+    color: #e2e8f0;
+
+    font-size: 11px;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+
+    text-align: center;
+
+    padding: 24px;
+
+    color: #557088;
+
+    font-size: 9px;
+
+    letter-spacing: 0.4px;
+}
+
+
+footer span {
+
+    padding: 0 7px;
+
+    color: #2c526d;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1050px) {
+
+    .fleet-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .bus-list {
+
+        height: 300px;
+    }
+
+    .map-wrapper {
+
+        height: 480px;
+    }
+
+    #fleetMap {
+
+        min-height: 480px;
+    }
+}
+
+
+@media (max-width: 750px) {
+
+    .fleet-page {
+
+        width: calc(100% - 24px);
+
+        padding-top: 18px;
+    }
+
+    .page-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .fleet-summary {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .details-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .fleet-topbar {
+
+        padding: 0 12px;
+    }
+
+    .back-button {
+
+        display: none;
+    }
+
+    .fleet-summary {
+
+        grid-template-columns: 1fr;
+    }
+
+    .map-wrapper {
+
+        height: 400px;
+    }
+
+    #fleetMap {
+
+        min-height: 400px;
+    }
+
+    .details-grid {
+
+        grid-template-columns: 1fr;
+    }
+}

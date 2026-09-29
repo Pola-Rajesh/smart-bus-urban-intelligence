@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables
+.env
+.env.*
+
+# Python packaging
+*.egg-info/
+dist/
+build/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated files
+runs/
+uploads/
+output/
+outputs/
+
+# IDE / editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# ANPR project - kept locally and maintained separately
+edge-ai/number_plate/Auto-Num-Plate-Recognition/
+
+# Large datasets and generated ML files
+datasets/
+evidence/
+smart-bus-urban-intelligence-backup/
+
+# YOLO weights
+*.pt
+
+# Generated model training directories
+models/road_damage/pothole_v2_yolo11n/
+models/waterlogging/
+
+# Generated videos
+*.mp4

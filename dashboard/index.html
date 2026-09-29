@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Bus Urban Intelligence</title>
+
+    <!-- Leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     TOP NAVIGATION
+===================================================== -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🚍
+        </div>
+
+        <div>
+
+            <h1>
+                SMART BUS
+                <span>URBAN INTELLIGENCE</span>
+            </h1>
+
+            <p>
+                AI-powered mobile urban sensing platform
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="top-status">
+
+        <div class="bus-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>BUS-07</strong>
+                <small>AI SENSING UNIT</small>
+            </div>
+
+        </div>
+
+
+        <div class="system-online">
+
+            <span class="online-dot"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+
+        <div id="clock">
+            --:--:--
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+===================================================== -->
+
+<main class="dashboard">
+
+
+    <!-- =================================================
+         HERO / SYSTEM OVERVIEW
+    ================================================== -->
+
+    <section class="hero">
+
+        <div>
+
+            <div class="section-label">
+                LIVE URBAN MONITORING
+            </div>
+
+            <h2>
+                City Intelligence
+                <span>Command Center</span>
+            </h2>
+
+            <p>
+                Real-time AI detections collected from
+                mobile sensing bus infrastructure.
+            </p>
+
+        </div>
+
+
+        <div class="hero-meta">
+
+            <div>
+                <span>BUS ID</span>
+                <strong>BUS-07</strong>
+            </div>
+
+            <div>
+                <span>STATUS</span>
+                <strong class="live-text">
+                    ● ACTIVE
+                </strong>
+            </div>
+
+            <div>
+                <span>AI MODULES</span>
+                <strong>03 ONLINE</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         KPI CARDS
+    ================================================== -->
+
+    <section class="kpi-grid">
+
+
+        <div class="kpi-card">
+
+            <div class="kpi-icon events">
+                ◈
+            </div>
+
+            <div>
+
+                <span>Total Events</span>
+
+                <strong id="totalEvents">
+                    0
+                </strong>
+
+                <small>
+                    AI detections
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card priority">
+
+            <div class="kpi-icon danger">
+                !
+            </div>
+
+            <div>
+
+                <span>High Priority</span>
+
+                <strong id="highEvents">
+                    0
+                </strong>
+
+                <small>
+                    Require attention
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <div class="kpi-icon pothole">
+                ⬡
+            </div>
+
+            <div>
+
+                <span>Potholes</span>
+
+                <strong id="potholeEvents">
+                    0
+                </strong>
+
+                <small>
+                    Road defects
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <div class="kpi-icon water">
+                ≋
+            </div>
+
+            <div>
+
+                <span>Waterlogging</span>
+
+                <strong id="waterEvents">
+                    0
+                </strong>
+
+                <small>
+                    Road flooding
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="kpi-card">
+
+            <div class="kpi-icon traffic">
+                ⇄
+            </div>
+
+            <div>
+
+                <span>Traffic Events</span>
+
+                <strong id="trafficEvents">
+                    0
+                </strong>
+
+                <small>
+                    Congestion detections
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MAIN INTELLIGENCE AREA
+    ================================================== -->
+
+    <section class="main-grid">
+
+
+        <!-- =============================================
+             MAP
+        ============================================== -->
+
+        <div class="panel map-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        URBAN EVENT MAP
+                    </div>
+
+                    <p>
+                        AI-detected incidents along the
+                        BUS-07 route
+                    </p>
+
+                </div>
+
+
+                <button
+                    onclick="loadEvents()"
+                    class="refresh-btn"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="map-wrapper">
+
+                <div id="map"></div>
+
+
+                <!-- MAP LEGEND -->
+
+                <div class="map-legend">
+
+                    <strong>
+                        EVENT TYPES
+                    </strong>
+
+                    <div>
+                        <span class="legend-marker pothole-marker"></span>
+                        Pothole
+                    </div>
+
+                    <div>
+                        <span class="legend-marker water-marker"></span>
+                        Waterlogging
+                    </div>
+
+                    <div>
+                        <span class="legend-marker traffic-marker"></span>
+                        Traffic
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =============================================
+             PRIORITY ALERTS
+        ============================================== -->
+
+        <div class="panel alerts-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="panel-title">
+                        PRIORITY ALERTS
+                    </div>
+
+                    <p>
+                        Incidents requiring attention
+                    </p>
+
+                </div>
+
+                <div class="alert-count">
+                    <span id="highEventsHeader">
+                        0
+                    </span>
+                    HIGH
+                </div>
+
+            </div>
+
+
+            <div
+                id="alerts"
+                class="alerts-container"
+            >
+
+                <div class="loading">
+                    Loading intelligence data...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         AI MODULE STATUS
+    ================================================== -->
+
+    <section class="panel modules-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <div class="panel-title">
+                    EDGE AI MODULES
+                </div>
+
+                <p>
+                    Detection systems operating on the
+                    mobile sensing platform
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="modules-grid">
+
+
+            <div class="module">
+
+                <div class="module-icon">
+                    ⬡
+                </div>
+
+                <div>
+
+                    <strong>
+                        ROAD DEFECT DETECTION
+                    </strong>
+
+                    <span>
+                        Pothole detection
+                    </span>
+
+                </div>
+
+                <div class="module-status">
+                    <span></span>
+                    ONLINE
+                </div>
+
+            </div>
+
+
+            <div class="module">
+
+                <div class="module-icon">
+                    ≋
+                </div>
+
+                <div>
+
+                    <strong>
+                        WATERLOGGING DETECTION
+                    </strong>
+
+                    <span>
+                        Road water accumulation
+                    </span>
+
+                </div>
+
+                <div class="module-status">
+                    <span></span>
+                    ONLINE
+                </div>
+
+            </div>
+
+
+            <div class="module">
+
+                <div class="module-icon">
+                    ⇄
+                </div>
+
+                <div>
+
+                    <strong>
+                        TRAFFIC ANALYTICS
+                    </strong>
+
+                    <span>
+                        Vehicle density analysis
+                    </span>
+
+                </div>
+
+                <div class="module-status">
+                    <span></span>
+                    ONLINE
+                </div>
+
+            </div>
+
+
+            <div class="module future-module">
+
+                <div class="module-icon">
+                    ▣
+                </div>
+
+                <div>
+
+                    <strong>
+                        NUMBER PLATE INTELLIGENCE
+                    </strong>
+
+                    <span>
+                        Incident identification
+                    </span>
+
+                </div>
+
+                <div class="module-status pending">
+                    <span></span>
+                    NEXT
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         EVENT TIMELINE
+    ================================================== -->
+
+    <section class="panel timeline-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <div class="panel-title">
+                    AI EVENT TIMELINE
+                </div>
+
+                <p>
+                    Chronological sequence of detections
+                </p>
+
+            </div>
+
+            <span
+                id="lastUpdated"
+                class="last-updated"
+            >
+                Waiting for data...
+            </span>
+
+        </div>
+
+
+        <div
+            id="timeline"
+            class="timeline"
+        >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         EVENT INVESTIGATION TABLE
+    ================================================== -->
+
+    <section class="panel investigation-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <div class="panel-title">
+                    EVENT INVESTIGATION
+                </div>
+
+                <p>
+                    Detailed intelligence generated by
+                    the edge AI pipeline
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            EVENT
+                        </th>
+
+                        <th>
+                            TYPE
+                        </th>
+
+                        <th>
+                            CONFIDENCE
+                        </th>
+
+                        <th>
+                            SEVERITY
+                        </th>
+
+                        <th>
+                            BUS
+                        </th>
+
+                        <th>
+                            GPS LOCATION
+                        </th>
+
+                        <th>
+                            VIDEO TIME
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="eventTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div>
+        🚍 SMART BUS URBAN INTELLIGENCE
+    </div>
+
+    <span>
+        SIH 2026 Prototype • Edge AI • Geospatial Intelligence
+    </span>
+
+</footer>
+
+
+
+<!-- =====================================================
+     LEAFLET
+===================================================== -->
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
+
+
+<!-- DASHBOARD JAVASCRIPT -->
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>

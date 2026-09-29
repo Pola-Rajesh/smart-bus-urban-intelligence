@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fleet Intelligence | Smart Bus</title>
+
+    <!-- =====================================================
+         LEAFLET CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        crossorigin=""
+    >
+
+    <!-- =====================================================
+         FLEET CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="fleet.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <header class="fleet-topbar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                SB
+            </div>
+
+            <div class="brand-text">
+
+                <h1>
+                    SMART BUS
+                </h1>
+
+                <p>
+                    Urban Intelligence Platform
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+            <div class="live-status">
+
+                <span class="live-dot"></span>
+
+                LIVE FLEET
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN PAGE
+    ====================================================== -->
+
+    <main class="fleet-page">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <section class="page-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    OPERATIONS / FLEET
+                </div>
+
+                <h2>
+                    Fleet Intelligence
+                </h2>
+
+                <p>
+                    Real-time operational view of connected
+                    Smart Bus sensing units and their geographic
+                    positions.
+                </p>
+
+            </div>
+
+
+            <div class="last-update">
+
+                <span class="update-dot"></span>
+
+                <div>
+
+                    <span class="update-label">
+                        LAST SYNC
+                    </span>
+
+                    <strong id="lastUpdated">
+                        Waiting...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
+        <section class="fleet-summary">
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon blue">
+                    🚌
+                </div>
+
+                <div>
+
+                    <span>
+                        FLEET SIZE
+                    </span>
+
+                    <strong id="fleetTotal">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon green">
+                    ●
+                </div>
+
+                <div>
+
+                    <span>
+                        ACTIVE BUSES
+                    </span>
+
+                    <strong id="activeBuses">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon orange">
+                    ◉
+                </div>
+
+                <div>
+
+                    <span>
+                        TRACKED
+                    </span>
+
+                    <strong id="trackedBuses">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-icon purple">
+                    GPS
+                </div>
+
+                <div>
+
+                    <span>
+                        GPS STATUS
+                    </span>
+
+                    <strong id="gpsStatus">
+                        ONLINE
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MAP + BUS LIST
+        ================================================== -->
+
+        <section class="fleet-grid">
+
+
+            <!-- =================================================
+                 MAP PANEL
+            ================================================== -->
+
+            <div class="map-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-kicker">
+                            LIVE GEO VIEW
+                        </span>
+
+                        <h3>
+                            Fleet Map
+                        </h3>
+
+                    </div>
+
+
+                    <div class="map-status">
+
+                        <span></span>
+
+                        LIVE
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     IMPORTANT:
+                     FIXED MAP CONTAINER
+                ================================================== -->
+
+                <div class="map-wrapper">
+
+                    <div
+                        id="fleetMap"
+                    ></div>
+
+                    <div class="map-overlay">
+
+                        <span class="map-live-dot"></span>
+
+                        LIVE GPS TELEMETRY
+
+                    </div>
+
+                </div>
+
+
+                <!-- MAP LEGEND -->
+
+                <div class="map-legend">
+
+                    <div>
+
+                        <span class="legend-marker active-marker"></span>
+
+                        Active Bus
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="legend-marker path-marker"></span>
+
+                        Route
+
+                    </div>
+
+
+                    <div>
+
+                        <span class="legend-marker inactive-marker"></span>
+
+                        Inactive
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 BUS LIST
+            ================================================== -->
+
+            <div class="bus-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-kicker">
+                            CONNECTED UNITS
+                        </span>
+
+                        <h3>
+                            Bus Fleet
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        id="refreshFleet"
+                        class="refresh-button"
+                        type="button"
+                    >
+                        ↻ Refresh
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="busList"
+                    class="bus-list"
+                >
+
+                    <div class="loading-state">
+                        Loading fleet...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SELECTED BUS DETAILS
+        ================================================== -->
+
+        <section
+            id="busDetails"
+            class="bus-details hidden"
+        >
+
+            <div class="details-header">
+
+                <div>
+
+                    <span class="panel-kicker">
+                        SELECTED UNIT
+                    </span>
+
+                    <h3 id="selectedBusId">
+                        BUS---
+                    </h3>
+
+                </div>
+
+
+                <button
+                    id="closeDetails"
+                    class="close-button"
+                    type="button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="details-grid">
+
+
+                <div class="detail-item">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <strong id="selectedStatus">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        LATITUDE
+                    </span>
+
+                    <strong id="selectedLatitude">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        LONGITUDE
+                    </span>
+
+                    <strong id="selectedLongitude">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-item">
+
+                    <span>
+                        GPS SOURCE
+                    </span>
+
+                    <strong>
+                        BUS TELEMETRY
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        Smart Bus Urban Intelligence
+
+        <span>•</span>
+
+        Fleet Monitoring System
+
+    </footer>
+
+
+    <!-- =====================================================
+         LEAFLET JS
+    ====================================================== -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        crossorigin=""
+    ></script>
+
+
+    <!-- =====================================================
+         FLEET JS
+    ====================================================== -->
+
+    <script src="fleet.js"></script>
+
+</body>
+
+</html>

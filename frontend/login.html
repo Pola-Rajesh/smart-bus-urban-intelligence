@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Smart Bus Urban Intelligence</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <!-- LEFT SIDE -->
+        <section class="login-visual">
+
+            <div class="visual-overlay"></div>
+
+            <div class="visual-content">
+
+                <div class="brand">
+                    <div class="brand-mark">SB</div>
+
+                    <div>
+                        <h1>SMART BUS</h1>
+                        <p>Urban Intelligence Platform</p>
+                    </div>
+                </div>
+
+                <div class="visual-main">
+
+                    <span class="eyebrow">
+                        INTELLIGENT URBAN MOBILITY
+                    </span>
+
+                    <h2>
+                        Turning city roads<br>
+                        into <span>actionable intelligence.</span>
+                    </h2>
+
+                    <p>
+                        Monitor connected buses, detect urban incidents,
+                        coordinate departments and transform real-time
+                        observations into smarter city operations.
+                    </p>
+
+                    <div class="feature-row">
+
+                        <div class="feature">
+                            <strong>AI</strong>
+                            <span>Detection</span>
+                        </div>
+
+                        <div class="feature">
+                            <strong>LIVE</strong>
+                            <span>Fleet Tracking</span>
+                        </div>
+
+                        <div class="feature">
+                            <strong>24/7</strong>
+                            <span>Monitoring</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="visual-footer">
+                    Smart Bus Urban Intelligence Platform
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+        <section class="login-section">
+
+            <div class="login-card">
+
+                <div class="mobile-brand">
+                    <div class="brand-mark">SB</div>
+                    <span>SMART BUS</span>
+                </div>
+
+                <div class="login-heading">
+
+                    <span class="section-label">
+                        SECURE ACCESS
+                    </span>
+
+                    <h2>
+                        Welcome back
+                    </h2>
+
+                    <p>
+                        Sign in to access the Urban Intelligence Platform.
+                    </p>
+
+                </div>
+
+
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ◉
+                            </span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ●
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="password-toggle"
+                            >
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="login-options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+                        <span class="access-type">
+                            Authorized personnel
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                        id="loginButton"
+                    >
+
+                        <span>
+                            Sign in to platform
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <div
+                        id="loginMessage"
+                        class="login-message"
+                    ></div>
+
+                </form>
+
+
+                <div class="security-note">
+
+                    <span class="security-icon">
+                        ✓
+                    </span>
+
+                    <div>
+                        <strong>Secure platform access</strong>
+                        <p>
+                            Access is restricted to authorized
+                            Smart Bus operations personnel.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="login-footer">
+
+                    <span>
+                        Smart Bus Urban Intelligence
+                    </span>
+
+                    <span>•</span>
+
+                    <span>
+                        Prototype v1.0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script>
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const passwordInput =
+            document.getElementById("password");
+
+        const togglePassword =
+            document.getElementById("togglePassword");
+
+        const loginMessage =
+            document.getElementById("loginMessage");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+
+        /* ==========================================
+           SHOW / HIDE PASSWORD
+        ========================================== */
+
+        togglePassword.addEventListener(
+            "click",
+            function () {
+
+                if (
+                    passwordInput.type === "password"
+                ) {
+
+                    passwordInput.type = "text";
+
+                    togglePassword.textContent =
+                        "Hide";
+
+                } else {
+
+                    passwordInput.type = "password";
+
+                    togglePassword.textContent =
+                        "Show";
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           LOGIN
+        ========================================== */
+
+        loginForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                const username =
+                    document
+                        .getElementById("username")
+                        .value
+                        .trim();
+
+                const password =
+                    passwordInput.value.trim();
+
+
+                if (!username || !password) {
+
+                    loginMessage.textContent =
+                        "Please enter your username and password.";
+
+                    loginMessage.className =
+                        "login-message error";
+
+                    return;
+                }
+
+
+                /*
+                 * Prototype authentication.
+                 *
+                 * For now any non-empty credentials
+                 * are accepted.
+                 *
+                 * Real authentication can be
+                 * connected later to FastAPI.
+                 */
+
+                loginButton.disabled = true;
+
+                loginButton.innerHTML =
+                    "<span>Signing in...</span>";
+
+
+                loginMessage.textContent =
+                    "Authenticating...";
+
+                loginMessage.className =
+                    "login-message";
+
+
+                setTimeout(
+                    function () {
+
+                        sessionStorage.setItem(
+                            "smartBusLoggedIn",
+                            "true"
+                        );
+
+                        sessionStorage.setItem(
+                            "smartBusUser",
+                            username
+                        );
+
+
+                        /*
+                         * Change this later if your
+                         * home page has another filename.
+                         */
+
+                        window.location.href =
+                            "home.html";
+
+                    },
+                    700
+                );
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

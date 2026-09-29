@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Bus | Urban Intelligence</title>
+
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <a href="home.html" class="brand">
+
+            <div class="brand-symbol">
+                SB
+            </div>
+
+            <div class="brand-text">
+                <strong>SMART BUS</strong>
+                <span>Urban Intelligence</span>
+            </div>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="home.html" class="active">
+                Overview
+            </a>
+
+            <a href="index.html">
+                Dashboard
+            </a>
+
+            <a href="fleet.html">
+                Fleet
+            </a>
+
+            <a href="department.html">
+                Departments
+            </a>
+
+        </nav>
+
+
+        <div class="system-indicator">
+
+            <span class="pulse-dot"></span>
+
+            <span>
+                SYSTEM ONLINE
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    CITY OPERATIONS PLATFORM
+                </div>
+
+                <h1>
+                    Turning everyday
+                    <span>bus journeys</span>
+                    into urban intelligence.
+                </h1>
+
+                <p class="hero-description">
+
+                    Smart Bus transforms connected public buses into
+                    mobile sensing units that continuously observe
+                    roads, traffic and urban conditions.
+
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <a
+                        href="index.html"
+                        class="primary-button"
+                    >
+                        Open Operations Dashboard
+                        <span>→</span>
+                    </a>
+
+                    <a
+                        href="fleet.html"
+                        class="secondary-button"
+                    >
+                        View Live Fleet
+                    </a>
+
+                </div>
+
+
+                <div class="hero-meta">
+
+                    <div>
+                        <strong>24/7</strong>
+                        <span>Urban monitoring</span>
+                    </div>
+
+                    <div>
+                        <strong>AI</strong>
+                        <span>Vision detection</span>
+                    </div>
+
+                    <div>
+                        <strong>GPS</strong>
+                        <span>Location intelligence</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 HERO VISUAL
+            ================================================== -->
+
+            <div class="hero-visual">
+
+                <div class="visual-glow"></div>
+
+                <div class="city-grid"></div>
+
+
+                <div class="route route-one"></div>
+                <div class="route route-two"></div>
+                <div class="route route-three"></div>
+
+
+                <div class="map-node node-one">
+                    <span></span>
+                </div>
+
+                <div class="map-node node-two">
+                    <span></span>
+                </div>
+
+                <div class="map-node node-three">
+                    <span></span>
+                </div>
+
+
+                <div class="bus-marker bus-one">
+                    🚌
+                </div>
+
+                <div class="bus-marker bus-two">
+                    🚌
+                </div>
+
+
+                <div class="live-card">
+
+                    <div class="live-card-header">
+
+                        <span>
+                            LIVE SENSOR NETWORK
+                        </span>
+
+                        <i></i>
+
+                    </div>
+
+                    <div class="live-card-value">
+                        05
+                    </div>
+
+                    <div class="live-card-label">
+                        connected sensing units
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             METRICS
+        ================================================== -->
+
+        <section class="metrics">
+
+            <div class="metric">
+
+                <span class="metric-label">
+                    FLEET
+                </span>
+
+                <strong
+                    id="fleetMetric"
+                    data-value="5"
+                >
+                    05
+                </strong>
+
+                <small>
+                    active buses
+                </small>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span class="metric-label">
+                    EVENTS
+                </span>
+
+                <strong
+                    id="eventMetric"
+                    data-value="12"
+                >
+                    12
+                </strong>
+
+                <small>
+                    detected incidents
+                </small>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span class="metric-label">
+                    ROAD
+                </span>
+
+                <strong
+                    id="potholeMetric"
+                    data-value="8"
+                >
+                    08
+                </strong>
+
+                <small>
+                    pothole reports
+                </small>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span class="metric-label">
+                    WATER
+                </span>
+
+                <strong
+                    id="waterMetric"
+                    data-value="4"
+                >
+                    04
+                </strong>
+
+                <small>
+                    waterlogging reports
+                </small>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYTICS
+        ================================================== -->
+
+        <section class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        OPERATIONAL OVERVIEW
+                    </span>
+
+                    <h2>
+                        City activity at a glance
+                    </h2>
+
+                </div>
+
+                <span class="period-label">
+                    DEMO DATA · LAST 7 DAYS
+                </span>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+
+                <!-- =========================================
+                     ACTIVITY GRAPH
+                ========================================== -->
+
+                <div class="analytics-card activity-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <span>
+                                DETECTION ACTIVITY
+                            </span>
+
+                            <h3>
+                                Incidents detected
+                            </h3>
+
+                        </div>
+
+                        <div class="trend">
+                            LIVE
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-area">
+
+                        <div class="y-axis">
+
+                            <span>20</span>
+                            <span>15</span>
+                            <span>10</span>
+                            <span>5</span>
+                            <span>0</span>
+
+                        </div>
+
+
+                        <div class="chart">
+
+                            <div class="grid-line line-20"></div>
+                            <div class="grid-line line-15"></div>
+                            <div class="grid-line line-10"></div>
+                            <div class="grid-line line-5"></div>
+
+
+                            <svg
+                                viewBox="0 0 700 240"
+                                preserveAspectRatio="none"
+                                class="activity-svg"
+                            >
+
+                                <defs>
+
+                                    <linearGradient
+                                        id="areaGradient"
+                                        x1="0"
+                                        y1="0"
+                                        x2="0"
+                                        y2="1"
+                                    >
+
+                                        <stop
+                                            offset="0%"
+                                            stop-color="#2563eb"
+                                            stop-opacity="0.22"
+                                        />
+
+                                        <stop
+                                            offset="100%"
+                                            stop-color="#2563eb"
+                                            stop-opacity="0"
+                                        />
+
+                                    </linearGradient>
+
+                                </defs>
+
+
+                                <path
+                                    class="chart-area-fill"
+                                    d="
+                                    M0 190
+                                    L100 155
+                                    L200 170
+                                    L300 105
+                                    L400 130
+                                    L500 72
+                                    L600 96
+                                    L700 45
+                                    L700 240
+                                    L0 240
+                                    Z
+                                    "
+                                ></path>
+
+
+                                <polyline
+                                    class="chart-line"
+                                    points="
+                                    0,190
+                                    100,155
+                                    200,170
+                                    300,105
+                                    400,130
+                                    500,72
+                                    600,96
+                                    700,45
+                                    "
+                                ></polyline>
+
+
+                                <circle cx="0" cy="190" r="4"></circle>
+                                <circle cx="100" cy="155" r="4"></circle>
+                                <circle cx="200" cy="170" r="4"></circle>
+                                <circle cx="300" cy="105" r="4"></circle>
+                                <circle cx="400" cy="130" r="4"></circle>
+                                <circle cx="500" cy="72" r="4"></circle>
+                                <circle cx="600" cy="96" r="4"></circle>
+                                <circle cx="700" cy="45" r="4"></circle>
+
+                            </svg>
+
+
+                            <div class="x-axis">
+
+                                <span>Mon</span>
+                                <span>Tue</span>
+                                <span>Wed</span>
+                                <span>Thu</span>
+                                <span>Fri</span>
+                                <span>Sat</span>
+                                <span>Sun</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =========================================
+                     EVENT DISTRIBUTION
+                ========================================== -->
+
+                <div class="analytics-card distribution-card">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <span>
+                                EVENT DISTRIBUTION
+                            </span>
+
+                            <h3>
+                                Detection mix
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="distribution">
+
+                        <div class="donut">
+
+                            <div class="donut-center">
+
+                                <strong>
+                                    12
+                                </strong>
+
+                                <span>
+                                    events
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="distribution-list">
+
+                            <div class="distribution-item">
+
+                                <span class="legend blue-dot"></span>
+
+                                <div>
+                                    <strong>Potholes</strong>
+                                    <small>8 events</small>
+                                </div>
+
+                                <b>67%</b>
+
+                            </div>
+
+
+                            <div class="distribution-item">
+
+                                <span class="legend orange-dot"></span>
+
+                                <div>
+                                    <strong>Waterlogging</strong>
+                                    <small>4 events</small>
+                                </div>
+
+                                <b>33%</b>
+
+                            </div>
+
+
+                            <div class="distribution-item">
+
+                                <span class="legend purple-dot"></span>
+
+                                <div>
+                                    <strong>Traffic</strong>
+                                    <small>Demo channel</small>
+                                </div>
+
+                                <b>—</b>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CAPABILITIES
+        ================================================== -->
+
+        <section class="capabilities">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PLATFORM
+                    </span>
+
+                    <h2>
+                        One sensing network. Multiple operations.
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="capability-grid">
+
+
+                <a
+                    href="index.html"
+                    class="capability-card"
+                >
+
+                    <div class="capability-number">
+                        01
+                    </div>
+
+                    <div class="capability-icon">
+                        ◈
+                    </div>
+
+                    <h3>
+                        Event Intelligence
+                    </h3>
+
+                    <p>
+                        Detect and review road incidents,
+                        confidence levels, evidence and GPS
+                        coordinates from bus camera data.
+                    </p>
+
+                    <span class="capability-link">
+                        Open dashboard →
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="fleet.html"
+                    class="capability-card"
+                >
+
+                    <div class="capability-number">
+                        02
+                    </div>
+
+                    <div class="capability-icon">
+                        ◎
+                    </div>
+
+                    <h3>
+                        Fleet Intelligence
+                    </h3>
+
+                    <p>
+                        Monitor connected buses, live geographic
+                        positions and fleet telemetry from the
+                        operations network.
+                    </p>
+
+                    <span class="capability-link">
+                        View fleet →
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="department.html"
+                    class="capability-card"
+                >
+
+                    <div class="capability-number">
+                        03
+                    </div>
+
+                    <div class="capability-icon">
+                        □
+                    </div>
+
+                    <h3>
+                        Department Operations
+                    </h3>
+
+                    <p>
+                        Route detected incidents to responsible
+                        departments and track their resolution
+                        status.
+                    </p>
+
+                    <span class="capability-link">
+                        Open departments →
+                    </span>
+
+                </a>
+
+
+
+                <div class="capability-card">
+
+                    <div class="capability-number">
+                        04
+                    </div>
+
+                    <div class="capability-icon">
+                        +
+                    </div>
+
+                    <h3>
+                        Video Analysis
+                    </h3>
+
+                    <p>
+                        Process bus camera footage through the
+                        detection pipeline to generate actionable
+                        urban intelligence.
+                    </p>
+
+                    <span class="capability-link">
+                        Available from dashboard
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SYSTEM FOOTER STRIP
+        ================================================== -->
+
+        <section class="system-strip">
+
+            <div>
+
+                <span class="strip-status"></span>
+
+                <strong>
+                    SMART BUS NETWORK
+                </strong>
+
+                <span>
+                    All core systems operational
+                </span>
+
+            </div>
+
+            <span class="strip-version">
+                PROTOTYPE / SIH 2026
+            </span>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <span>
+            SMART BUS URBAN INTELLIGENCE
+        </span>
+
+        <span>
+            Mobile sensing for smarter cities
+        </span>
+
+    </footer>
+
+
+    <script src="home.js"></script>
+
+</body>
+
+</html>

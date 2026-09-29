@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Department Operations | Smart Bus</title>
+
+    <link rel="stylesheet"
+          href="department.css">
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-mark">
+            SB
+        </div>
+
+        <div>
+            <h1>SMART BUS</h1>
+            <p>Urban Intelligence Platform</p>
+        </div>
+
+    </div>
+
+    <div class="topbar-right">
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            DEPARTMENT OPERATIONS
+        </div>
+
+        <a href="index.html"
+           class="back-button">
+            ← Dashboard
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="page">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <section class="page-header">
+
+        <div>
+
+            <div class="eyebrow">
+                OPERATIONS / RESPONSE DEPARTMENTS
+            </div>
+
+            <h2>
+                Incident Resolution Center
+            </h2>
+
+            <p>
+                Monitor detected road incidents and coordinate
+                resolution activities across municipal departments.
+            </p>
+
+        </div>
+
+        <div class="live-indicator">
+
+            <span class="pulse-dot"></span>
+
+            LIVE MONITORING
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DEPARTMENT SWITCHER
+    ====================================================== -->
+
+    <section class="department-tabs">
+
+        <button
+            class="department-tab active"
+            data-department="pothole">
+
+            <span class="tab-icon">
+                🕳️
+            </span>
+
+            <span>
+                <strong>Pothole Department</strong>
+                <small>Road damage & surface defects</small>
+            </span>
+
+            <span
+                id="potholeTabCount"
+                class="tab-count">
+                0
+            </span>
+
+        </button>
+
+
+        <button
+            class="department-tab"
+            data-department="waterlogging">
+
+            <span class="tab-icon">
+                🌊
+            </span>
+
+            <span>
+                <strong>Waterlogging Department</strong>
+                <small>Flooding & drainage incidents</small>
+            </span>
+
+            <span
+                id="waterTabCount"
+                class="tab-count">
+                0
+            </span>
+
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         SUMMARY
+    ====================================================== -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon pending">
+                !
+            </div>
+
+            <div>
+
+                <span>PENDING</span>
+
+                <strong id="pendingCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon progress">
+                ↻
+            </div>
+
+            <div>
+
+                <span>IN PROGRESS</span>
+
+                <strong id="progressCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon resolved">
+                ✓
+            </div>
+
+            <div>
+
+                <span>RESOLVED</span>
+
+                <strong id="resolvedCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon total">
+                #
+            </div>
+
+            <div>
+
+                <span>TOTAL INCIDENTS</span>
+
+                <strong id="totalCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CONTROLS
+    ====================================================== -->
+
+    <section class="control-panel">
+
+        <div class="control-left">
+
+            <span class="control-label">
+                STATUS
+            </span>
+
+            <button
+                class="status-filter active"
+                data-status="all">
+                All
+            </button>
+
+            <button
+                class="status-filter"
+                data-status="pending">
+                Pending
+            </button>
+
+            <button
+                class="status-filter"
+                data-status="in_progress">
+                In Progress
+            </button>
+
+            <button
+                class="status-filter"
+                data-status="resolved">
+                Resolved
+            </button>
+
+        </div>
+
+
+        <div class="control-right">
+
+            <label for="sortEvents">
+                Sort
+            </label>
+
+            <select id="sortEvents">
+
+                <option value="priority">
+                    Priority
+                </option>
+
+                <option value="newest">
+                    Newest
+                </option>
+
+                <option value="oldest">
+                    Oldest
+                </option>
+
+                <option value="confidence">
+                    Confidence
+                </option>
+
+            </select>
+
+
+            <button
+                id="refreshButton"
+                class="refresh-button">
+
+                ↻ Refresh
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INCIDENT LIST
+    ====================================================== -->
+
+    <section class="incidents-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-kicker">
+                    ACTIVE RESPONSE QUEUE
+                </span>
+
+                <h3 id="departmentTitle">
+                    Pothole Department
+                </h3>
+
+            </div>
+
+            <div
+                id="incidentCountLabel"
+                class="incident-count">
+                0 incidents
+            </div>
+
+        </div>
+
+
+        <div
+            id="incidentList"
+            class="incident-list">
+
+            <div class="loading-state">
+
+                <div class="loading-spinner"></div>
+
+                Loading incidents...
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RESOLUTION INFORMATION
+    ====================================================== -->
+
+    <section class="workflow-panel">
+
+        <div class="workflow-title">
+
+            <span class="panel-kicker">
+                RESPONSE WORKFLOW
+            </span>
+
+            <h3>
+                Incident Lifecycle
+            </h3>
+
+        </div>
+
+
+        <div class="workflow">
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    01
+                </div>
+
+                <div>
+
+                    <strong>
+                        Detected
+                    </strong>
+
+                    <p>
+                        AI detects an incident from the
+                        Smart Bus camera stream.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="workflow-line"></div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    02
+                </div>
+
+                <div>
+
+                    <strong>
+                        In Progress
+                    </strong>
+
+                    <p>
+                        Department acknowledges the incident
+                        and begins corrective action.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="workflow-line"></div>
+
+
+            <div class="workflow-step">
+
+                <div class="workflow-number">
+                    03
+                </div>
+
+                <div>
+
+                    <strong>
+                        Resolved
+                    </strong>
+
+                    <p>
+                        Department confirms that the incident
+                        has been addressed.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    Smart Bus Urban Intelligence
+
+    <span>•</span>
+
+    Department Resolution Center
+
+</footer>
+
+
+<script src="department.js"></script>
+
+</body>
+
+</html>
